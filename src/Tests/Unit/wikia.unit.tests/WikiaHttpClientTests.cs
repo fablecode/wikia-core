@@ -1,11 +1,10 @@
-using System.Collections.Generic;
+using FluentAssertions;
+using NSubstitute;
+using NUnit.Framework;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using FluentAssertions;
-using NSubstitute;
-using NUnit.Framework;
 using wikia.tests.core;
 
 namespace wikia.unit.tests
