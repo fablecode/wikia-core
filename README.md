@@ -1,2 +1,2 @@
 # wikia-core
-Wikia is a C# .Net Core 2.2 library that makes it easy to access Wiki data.
+Wikia is a C# .Net Core 2.2 library that provides resource oriented interfaces and clients for the Wikia Api.
