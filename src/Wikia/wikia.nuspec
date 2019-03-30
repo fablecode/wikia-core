@@ -1,0 +1,64 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+    <metadata>
+        <!-- The identifier that must be unique within the hosting gallery -->
+        <id>wikia.core</id>
+
+        <!-- Authors contain text that appears directly on the gallery -->
+        <authors>fablecode</authors>
+
+        <!-- 
+            Owners are typically nuget.org identities that allow gallery
+            users to easily find other packages by the same owners.  
+        -->
+        <owners>fablecode</owners>
+        
+         <!-- Project URL provides a link for the gallery -->
+        <projectUrl>https://github.com/fablecode/wikia-core</projectUrl>
+
+         <!-- License information is displayed on the gallery -->
+        <license type="expression">MIT</license>
+        
+
+        <!-- The icon is used in Visual Studio's package manager UI -->
+        <iconUrl>https://github.com/fablecode/wikia-core/doc/icons/wikia.jpg</iconUrl>
+
+        <!-- 
+            If true, this value prompts the user to accept the license when
+            installing the package. 
+        -->
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+        <!-- Any details about this particular release -->
+        <releaseNotes></releaseNotes>
+
+        <!-- 
+            The description can be used in package manager UI. Note that the
+            nuget.org gallery uses information you add in the portal. 
+        -->
+        <description>A library that provides resource oriented interfaces and clients for the Wikia Api.</description>
+
+        <!-- Copyright information -->
+        <copyright></copyright>
+
+        <!-- Tags appear in the gallery and can be used for tag searches -->
+        <tags>library wikia c-sharp .net core VSTS(Visual Studio Team Services)</tags>
+
+      <!-- Add this line and making the URL targets your project -->
+      <repository type="git" url="https://github.com/fablecode/wikia-core" />
+
+        <!-- Dependencies are automatically installed when the package is installed -->
+        <dependencies>
+            <dependency id="Microsoft.AspNetCore.Http.Extensions" version="2.2.0" />
+            <dependency id="Microsoft.AspNetCore.WebUtilities" version="2.2.0" />
+            <dependency id="Microsoft.Extensions.DependencyInjection" version="2.2.0" />
+            <dependency id="Microsoft.Extensions.Http" version="2.2.0" />
+            <dependency id="Newtonsoft.Json" version="12.0.1" />
+        </dependencies>
+    </metadata>
+
+    <!-- A readme.txt to display when the package is installed -->
+    <files>
+        <file src="readme.txt" target="" />
+    </files>
+</package>
