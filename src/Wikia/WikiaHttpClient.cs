@@ -1,14 +1,22 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace wikia
 {
     public sealed class WikiaHttpClient : IWikiaHttpClient
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private static IHttpClientFactory _httpClientFactory;
+
+        static WikiaHttpClient()
+        {
+            var serviceProvider = new ServiceCollection().AddHttpClient().BuildServiceProvider();
+            _httpClientFactory = serviceProvider.GetService<IHttpClientFactory>();
+        }
+
+        public WikiaHttpClient() {}
 
         public WikiaHttpClient(IHttpClientFactory httpClientFactory)
         {
@@ -22,11 +30,11 @@ namespace wikia
 
         public Task<string> GetString(string url, IDictionary<string, string> parameters)
         {
-            var client = _httpClientFactory.CreateClient();
-
             url = QueryHelpers.AddQueryString(url, parameters);
 
-            return client.GetStringAsync(url);
+            var httpClient = _httpClientFactory.CreateClient();
+
+            return httpClient.GetStringAsync(url);
         }
     }
 }
