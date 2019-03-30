@@ -4,7 +4,7 @@ namespace wikia.Helper
 {
     public class UrlHelper
     {
-        public static string GenerateApiUrl(string absoluteUrl, string relativeUrl)
+        public static string GenerateUrl(string absoluteUrl, string relativeUrl)
         {
             if (!absoluteUrl.EndsWith("/"))
                 absoluteUrl += "/";

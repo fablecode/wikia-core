@@ -40,7 +40,7 @@ namespace wikia.Api
         public WikiArticle(string domainUrl, string apiVersion, IWikiaHttpClient wikiaHttpClient)
         {
             _wikiaHttpClient = wikiaHttpClient;
-            _wikiApiUrl = UrlHelper.GenerateApiUrl(domainUrl, apiVersion);
+            _wikiApiUrl = UrlHelper.GenerateUrl(domainUrl, apiVersion);
         }
 
         public async Task<ContentResult> Simple(long id)
@@ -55,7 +55,7 @@ namespace wikia.Api
 
         public Task<string> ArticleRequest(ArticleEndpoint endpoint, Func<IDictionary<string, string>> getParameters)
         {
-            var requestUrl = UrlHelper.GenerateApiUrl(_wikiApiUrl, Endpoints[endpoint]);
+            var requestUrl = UrlHelper.GenerateUrl(_wikiApiUrl, Endpoints[endpoint]);
             var parameters = getParameters.Invoke();
             return _wikiaHttpClient.GetString(requestUrl, parameters);
         }
