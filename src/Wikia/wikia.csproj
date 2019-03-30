@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/fablecode/wikia-core</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <Description>A library that provides resource oriented interfaces and clients for the Wikia Api.</Description>
-    <PackageTags>library wikia c-sharp .net core VSTS(Visual Studio Team Services)</PackageTags>
+    <PackageTags>library wikia c-sharp .net core vsts api visual-studio</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

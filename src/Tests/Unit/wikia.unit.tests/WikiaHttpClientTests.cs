@@ -59,7 +59,7 @@ namespace wikia.unit.tests
             _httpClientFactory.CreateClient().Returns(fakeHttpClient);
             
             // Act
-            var result = await _sut.GetString(url);
+            await _sut.GetString(url);
 
             // Assert
             _httpClientFactory.Received(1).CreateClient();
