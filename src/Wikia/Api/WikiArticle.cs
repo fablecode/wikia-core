@@ -54,13 +54,6 @@ namespace wikia.Api
             return JsonHelper.Deserialize<ContentResult>(json);
         }
 
-        public Task<string> ArticleRequest(ArticleEndpoint endpoint, Func<IDictionary<string, string>> getParameters)
-        {
-            var requestUrl = UrlHelper.GenerateUrl(_wikiApiUrl, Endpoints[endpoint]);
-            var parameters = getParameters.Invoke();
-            return _wikiaHttpClient.GetString(requestUrl, parameters);
-        }
-
         public Task<ExpandedArticleResultSet> Details(params int[] ids)
         {
             return Details(new ArticleDetailsRequestParameters(ids));
@@ -74,6 +67,13 @@ namespace wikia.Api
             var json = await ArticleRequest(ArticleEndpoint.Details, () => ArticleHelper.GetDetailsParameters(requestParameters));
 
             return JsonHelper.Deserialize<ExpandedArticleResultSet>(json);
+        }
+
+        public Task<string> ArticleRequest(ArticleEndpoint endpoint, Func<IDictionary<string, string>> getParameters)
+        {
+            var requestUrl = UrlHelper.GenerateUrl(_wikiApiUrl, Endpoints[endpoint]);
+            var parameters = getParameters.Invoke();
+            return _wikiaHttpClient.GetString(requestUrl, parameters);
         }
     }
 }
