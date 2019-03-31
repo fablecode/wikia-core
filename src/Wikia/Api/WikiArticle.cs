@@ -9,39 +9,22 @@ using wikia.Models.Article.Simple;
 
 namespace wikia.Api
 {
-    public sealed class WikiArticle : IWikiArticle
+    public sealed class WikiArticle : WikiArticleEndpoint, IWikiArticle
     {
-        private readonly IWikiaHttpClient _wikiaHttpClient;
-        private static readonly Dictionary<ArticleEndpoint, string> Endpoints;
-        private readonly string _wikiApiUrl;
-
-        static WikiArticle()
-        {
-            Endpoints = new Dictionary<ArticleEndpoint, string>
-            {
-                {ArticleEndpoint.Simple, "Articles/AsSimpleJson"},
-                {ArticleEndpoint.Details, "Articles/Details"},
-                {ArticleEndpoint.List, "Articles/List"},
-                {ArticleEndpoint.NewArticles, "Articles/New"},
-                {ArticleEndpoint.Popular, "Articles/Popular"}
-            };
-        }
-
         public WikiArticle(string domainUrl)
-            : this(domainUrl, WikiaSettings.ApiVersion)
+            : base(domainUrl, WikiaSettings.ApiVersion)
         {
             
         }
         public WikiArticle(string domainUrl, string apiVersion)
-            : this(domainUrl, apiVersion, new WikiaHttpClient())
+            : base(domainUrl, apiVersion, new WikiaHttpClient())
         {
             
         }
 
         public WikiArticle(string domainUrl, string apiVersion, IWikiaHttpClient wikiaHttpClient)
+        : base(domainUrl, apiVersion, wikiaHttpClient)
         {
-            _wikiaHttpClient = wikiaHttpClient;
-            _wikiApiUrl = UrlHelper.GenerateUrl(domainUrl, apiVersion);
         }
 
         public async Task<ContentResult> Simple(long id)
@@ -67,13 +50,6 @@ namespace wikia.Api
             var json = await ArticleRequest(ArticleEndpoint.Details, () => ArticleHelper.GetDetailsParameters(requestParameters));
 
             return JsonHelper.Deserialize<ExpandedArticleResultSet>(json);
-        }
-
-        public Task<string> ArticleRequest(ArticleEndpoint endpoint, Func<IDictionary<string, string>> getParameters)
-        {
-            var requestUrl = UrlHelper.GenerateUrl(_wikiApiUrl, Endpoints[endpoint]);
-            var parameters = getParameters.Invoke();
-            return _wikiaHttpClient.GetString(requestUrl, parameters);
         }
     }
 }

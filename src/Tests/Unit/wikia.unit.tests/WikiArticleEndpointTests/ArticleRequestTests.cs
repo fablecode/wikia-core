@@ -7,13 +7,13 @@ using wikia.Configuration;
 using wikia.Enums;
 using wikia.tests.core;
 
-namespace wikia.unit.tests.WikiaArticleTests
+namespace wikia.unit.tests.WikiArticleEndpointTests
 {
     [TestFixture]
     [Category(TestType.Unit)]
     public class ArticleRequestTests
     {
-        private WikiArticle _sut;
+        private WikiArticleEndpoint _sut;
         private IWikiaHttpClient _wikiaHttpClient;
         private const string Url = "http://naruto.wikia.com";
 
