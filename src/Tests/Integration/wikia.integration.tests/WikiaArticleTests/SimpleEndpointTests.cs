@@ -14,7 +14,7 @@ namespace wikia.integration.tests.WikiaArticleTests
         public async Task Given_A_DomainUrl_And_ArticleId_SectionList_Should_Not_Be_Empty(string domainUrl, int articleId)
         {
             // Arrange
-            var sut = new WikiArticle(domainUrl);
+            IWikiArticle sut = new WikiArticle(domainUrl);
 
             // Act
             var result = await sut.Simple(articleId);

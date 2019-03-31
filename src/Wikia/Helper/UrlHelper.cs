@@ -2,7 +2,7 @@
 
 namespace wikia.Helper
 {
-    public class UrlHelper
+    public static class UrlHelper
     {
         public static string GenerateUrl(string absoluteUrl, string relativeUrl)
         {

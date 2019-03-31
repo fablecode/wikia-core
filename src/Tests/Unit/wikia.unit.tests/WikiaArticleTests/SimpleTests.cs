@@ -17,7 +17,7 @@ namespace wikia.unit.tests.WikiaArticleTests
     {
         private WikiArticle _sut;
         private IWikiaHttpClient _wikiaHttpClient;
-        private const string Url = "http://naruto.wikia.com";
+        private const string Url = "http://naruto.fandom.com";
 
         [SetUp]
         public void Setup()
