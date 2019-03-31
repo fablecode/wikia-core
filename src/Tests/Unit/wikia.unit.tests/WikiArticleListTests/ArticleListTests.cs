@@ -9,6 +9,7 @@ using wikia.Configuration;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
 using wikia.Models.Article.Details;
+using wikia.Models.Article.NewArticles;
 using wikia.tests.core;
 
 namespace wikia.unit.tests.WikiArticleListTests

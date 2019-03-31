@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using wikia.Enums;
+﻿using System.Threading.Tasks;
 using wikia.Models.Article.Details;
 using wikia.Models.Article.Simple;
 

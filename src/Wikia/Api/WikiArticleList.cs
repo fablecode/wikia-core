@@ -7,6 +7,7 @@ using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
 using wikia.Models.Article.NewArticles;
 using wikia.Models.Article.PageList;
+using wikia.Models.Article.Popular;
 
 namespace wikia.Api
 {
@@ -77,6 +78,29 @@ namespace wikia.Api
             var json = await ArticleRequest(ArticleEndpoint.NewArticles, () => ArticleHelper.GetNewArticleParameters(requestParameters));
 
             return JsonHelper.Deserialize<NewArticleResultSet>(json);
+        }
+
+        public Task<PopularListArticleResultSet> PopularArticleSimple(PopularArticleRequestParameters requestParameters)
+        {
+            return PopularArticle<PopularListArticleResultSet>(requestParameters, false);
+        }
+
+        public Task<PopularExpandedArticleResultSet> PopularArticleDetail(PopularArticleRequestParameters requestParameters)
+        {
+            return PopularArticle<PopularExpandedArticleResultSet>(requestParameters, true);
+        }
+
+        public async Task<T> PopularArticle<T>(PopularArticleRequestParameters requestParameters, bool expand)
+        {
+            if (requestParameters == null)
+                throw new ArgumentNullException(nameof(requestParameters));
+
+            if (requestParameters.Limit <= 0 || requestParameters.Limit > 10)
+                throw new ArgumentOutOfRangeException(nameof(requestParameters.Limit), "Minimum limit is 1 and maximum is 10");
+
+            var json = await ArticleRequest(ArticleEndpoint.Popular, () => ArticleHelper.GetPopularArticleParameters(requestParameters, true));
+
+            return JsonHelper.Deserialize<T>(json);
         }
 
     }

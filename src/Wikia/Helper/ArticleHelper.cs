@@ -3,12 +3,15 @@ using System.Linq;
 using wikia.Models.Article;
 using wikia.Models.Article.Details;
 using wikia.Models.Article.NewArticles;
+using wikia.Models.Article.Popular;
 
 namespace wikia.Helper
 {
     public static class ArticleHelper
     {
         public const string Limit = "limit";
+        public const string Expand = "expand";
+        public const string Namespaces = "namespaces";
 
         public static IDictionary<string, string> GetDetailsParameters(ArticleDetailsRequestParameters requestParameters)
         {
@@ -39,13 +42,13 @@ namespace wikia.Helper
             };
 
             if (expanded)
-                parameters["expand"] = "1";
+                parameters[Expand] = "1";
 
             if (!string.IsNullOrEmpty(requestParameters.Category))
                 parameters["category"] = requestParameters.Category;
 
             if (requestParameters.Namespaces.Any())
-                parameters["namespaces"] = string.Join(",", requestParameters.Namespaces);
+                parameters[Namespaces] = string.Join(",", requestParameters.Namespaces);
 
             if (!string.IsNullOrEmpty(requestParameters.Offset))
                 parameters["offset"] = requestParameters.Offset;
@@ -62,7 +65,28 @@ namespace wikia.Helper
             };
 
             if (requestParameters.Namespaces.Any())
-                parameters["namespaces"] = string.Join(",", requestParameters.Namespaces);
+                parameters[Namespaces] = string.Join(",", requestParameters.Namespaces);
+
+            return parameters;
+        }
+
+        public static IDictionary<string, string> GetPopularArticleParameters(PopularArticleRequestParameters requestParameters)
+        {
+            return GetPopularArticleParameters(requestParameters, false);
+        }
+
+        public static IDictionary<string, string> GetPopularArticleParameters(PopularArticleRequestParameters requestParameters, bool expanded)
+        {
+            IDictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                [Limit] = requestParameters.Limit.ToString(),
+            };
+
+            if (expanded)
+                parameters[Expand] = "1";
+
+            if (requestParameters.BaseArticleId.HasValue)
+                parameters["basearticleid"] = string.Join(",", requestParameters.BaseArticleId);
 
             return parameters;
         }

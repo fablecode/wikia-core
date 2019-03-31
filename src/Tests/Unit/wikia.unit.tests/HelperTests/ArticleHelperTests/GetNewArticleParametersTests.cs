@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
+using System.Collections.Generic;
 using wikia.Helper;
 using wikia.Models.Article.NewArticles;
 using wikia.tests.core;
