@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
-using wikia.Api;
+using System.Collections.Generic;
 using wikia.Helper;
 using wikia.Models.Article.Details;
 using wikia.tests.core;
@@ -13,7 +12,7 @@ namespace wikia.unit.tests.HelperTests.ArticleHelperTests
     public class GetDetailsParametersTests
     {
         [Test]
-        public void Given_An_ArticleDetailsRequestParameters_If_Titles_Are_SpecifiedIn_Should_Contain_Titles_Key()
+        public void Given_An_ArticleDetailsRequestParameters_If_Titles_Are_Specified_Dictionary_Should_Contain_Titles_Key()
         {
             // Arrange
             const string expected = "titles";

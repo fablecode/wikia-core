@@ -38,7 +38,6 @@ namespace wikia.unit.tests.WikiaArticleTests
             act.Should().Throw<ArgumentNullException>();
         }
 
-
         [Test]
         public async Task Given_An_ArticleDetailsRequestParameters_The_Response_Items_Collection_Should_Contain_Id_Key()
         {

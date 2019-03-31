@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
+using wikia.Models.Article.NewArticles;
 using wikia.Models.Article.PageList;
 
 namespace wikia.Api
@@ -12,5 +13,7 @@ namespace wikia.Api
         Task<ExpandedListArticleResultSet> PageList(string category);
         Task<ExpandedListArticleResultSet> PageList(ArticleListRequestParameters requestParameters);
         Task<T> ArticleList<T>(ArticleListRequestParameters requestParameters, bool expand);
+        Task<NewArticleResultSet> NewArticles();
+        Task<NewArticleResultSet> NewArticles(NewArticleRequestParameters requestParameters);
     }
 }

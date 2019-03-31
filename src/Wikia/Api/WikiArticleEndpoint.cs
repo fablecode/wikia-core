@@ -5,6 +5,7 @@ using wikia.Configuration;
 using wikia.Enums;
 using wikia.Helper;
 using wikia.Models.Article;
+using wikia.Models.Article.NewArticles;
 
 namespace wikia.Api
 {
