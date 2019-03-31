@@ -53,5 +53,21 @@ namespace wikia.unit.tests.WikiaArticleTests
             // Assert
             result.Should().NotBeNull();
         }
+
+
+        [Test]
+        public async Task Given_A_Valid_ArticleId_Should_Invoke_GetString_Once()
+        {
+            // Arrange
+            const long articleId = 2342;
+
+            _wikiaHttpClient.GetString(Arg.Any<string>(), Arg.Any<Dictionary<string, string>>()).Returns(@"{ ""sections"": [ { ""title"": ""Solemn Wishes"", ""level"": 1, ""content"": [], ""images"": [] } ] }");
+
+            // Act
+            await _sut.Simple(articleId);
+
+            // Assert
+            await _wikiaHttpClient.Received(1).GetString(Arg.Any<string>(), Arg.Any<Dictionary<string, string>>());
+        }
     }
 }

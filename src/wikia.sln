@@ -11,9 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wikia", "Wikia\wikia.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{FF7CDDB5-C80F-44C1-92B5-6D6F74C56BC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wikia.unit.tests", "Tests\Unit\wikia.unit.tests\wikia.unit.tests.csproj", "{2DB0866D-D2D7-4B29-BECB-FDAAAB35EF72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wikia.unit.tests", "Tests\Unit\wikia.unit.tests\wikia.unit.tests.csproj", "{2DB0866D-D2D7-4B29-BECB-FDAAAB35EF72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wikia.tests.core", "Tests\wikia.tests.core\wikia.tests.core.csproj", "{C97A2381-531C-48A1-A8B9-9EB26245088F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wikia.tests.core", "Tests\wikia.tests.core\wikia.tests.core.csproj", "{C97A2381-531C-48A1-A8B9-9EB26245088F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{506EE2AE-8EA7-47FA-94CB-12466C8DF054}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wikia.integration.tests", "Tests\Integration\wikia.integration.tests\wikia.integration.tests.csproj", "{DC8D1758-1D14-4C38-8C38-83366164212C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,10 @@ Global
 		{C97A2381-531C-48A1-A8B9-9EB26245088F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C97A2381-531C-48A1-A8B9-9EB26245088F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C97A2381-531C-48A1-A8B9-9EB26245088F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC8D1758-1D14-4C38-8C38-83366164212C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC8D1758-1D14-4C38-8C38-83366164212C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC8D1758-1D14-4C38-8C38-83366164212C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC8D1758-1D14-4C38-8C38-83366164212C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +50,8 @@ Global
 		{FF7CDDB5-C80F-44C1-92B5-6D6F74C56BC3} = {9A4B53F7-F6FD-4068-9389-A6EFE9E64A15}
 		{2DB0866D-D2D7-4B29-BECB-FDAAAB35EF72} = {FF7CDDB5-C80F-44C1-92B5-6D6F74C56BC3}
 		{C97A2381-531C-48A1-A8B9-9EB26245088F} = {9A4B53F7-F6FD-4068-9389-A6EFE9E64A15}
+		{506EE2AE-8EA7-47FA-94CB-12466C8DF054} = {9A4B53F7-F6FD-4068-9389-A6EFE9E64A15}
+		{DC8D1758-1D14-4C38-8C38-83366164212C} = {506EE2AE-8EA7-47FA-94CB-12466C8DF054}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41E99D77-A821-4FB1-AD7E-11532D2C79CB}
