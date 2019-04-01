@@ -14,7 +14,7 @@ namespace wikia.unit.tests.WikiActivityTests
 {
     [TestFixture]
     [Category(TestType.Unit)]
-    public class ActivityRequestTests
+    public sealed class ActivityRequestTests
     {
         private IWikiActivity _sut;
         private IWikiaHttpClient _wikiaHttpClient;
