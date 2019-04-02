@@ -57,10 +57,10 @@ namespace wikia.Api
             IDictionary<string, string> parameters = new Dictionary<string, string>
             {
                 ["query"] = string.Join(",", requestParameters.Query),
-                ["limit"] = requestParameters.Limit.ToString(),
+                [Constants.Limit] = requestParameters.Limit.ToString(),
                 ["minArticleQuality"] = requestParameters.MinArticleQuality.ToString(),
                 ["batch"] = requestParameters.Batch.ToString(),
-                ["namespaces"] = string.Join(",", requestParameters.Namespaces)
+                [Constants.Namespaces] = string.Join(",", requestParameters.Namespaces)
             };
 
             if (!string.IsNullOrEmpty(requestParameters.Type))
