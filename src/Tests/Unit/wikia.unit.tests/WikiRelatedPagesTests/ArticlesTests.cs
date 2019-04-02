@@ -49,7 +49,7 @@ namespace wikia.unit.tests.WikiRelatedPagesTests
         }
 
         [Test]
-        public async Task Given_Ids_List_RelatedArticlesRequestParameters_Should_()
+        public async Task Given_Ids_List_RelatedArticlesRequestParameters_Should_Execute_Successfully()
         {
             // Arrange
             _wikiaHttpClient.GetString(Arg.Any<string>(), Arg.Any<Dictionary<string, string>>()).Returns(@"{ ""items"": { ""50"": [ { ""url"": ""/wiki/Super_Junior_Confrontation"", ""title"": ""Super Junior Confrontation"", ""id"": 23338, ""imgUrl"": ""https://vignette.wikia.nocookie.net/yugioh/images/2/21/SuperJuniorConfrontation-DR04-NA-C-UE.png/revision/latest/window-crop/width/200/x-offset/0/y-offset/58/window-width/400/window-height/200?cb=20080530031342"", ""imgOriginalDimensions"": { ""width"": ""400"", ""height"": ""580"" }, ""text"": ""Super Junior Confrontation スーパージュニア対（たい）決（けつ）！ English Super Junior Confrontation French..."" }, { ""url"": ""/wiki/Topologic_Trisbaena"", ""title"": ""Topologic Trisbaena"", ""id"": 681182, ""imgUrl"": ""https://vignette.wikia.nocookie.net/yugioh/images/2/2b/TopologicTrisbaena-FLOD-EN-ScR-1E.png/revision/latest/window-crop/width/200/x-offset/0/y-offset/70/window-width/479/window-height/240?cb=20180504165822"", ""imgOriginalDimensions"": { ""width"": ""479"", ""height"": ""700"" }, ""text"": ""Check translation Check translation"" }, { ""url"": ""/wiki/Witchcrafter_Draping"", ""title"": ""Witchcrafter Draping"", ""id"": 702109, ""imgUrl"": ""https://vignette.wikia.nocookie.net/yugioh/images/4/47/WitchcrafterDraping-INCH-EN-1E-OP.png/revision/latest/window-crop/width/200/x-offset/0/y-offset/66/window-width/450/window-height/225?cb=20190315154155"", ""imgOriginalDimensions"": { ""width"": ""450"", ""height"": ""656"" }, ""text"": ""The English lore given is not official. Check translation"" } ] }, ""basepath"": ""https://yugioh.fandom.com"" }");
@@ -59,6 +59,19 @@ namespace wikia.unit.tests.WikiRelatedPagesTests
 
             // Assert
             result.Items.Should().NotBeEmpty();
+        }
+
+        [Test]
+        public async Task Given_Ids_List_RelatedArticlesRequestParameters_Should_Invoke_GetString_Once()
+        {
+            // Arrange
+            _wikiaHttpClient.GetString(Arg.Any<string>(), Arg.Any<Dictionary<string, string>>()).Returns(@"{ ""items"": { ""50"": [ { ""url"": ""/wiki/Super_Junior_Confrontation"", ""title"": ""Super Junior Confrontation"", ""id"": 23338, ""imgUrl"": ""https://vignette.wikia.nocookie.net/yugioh/images/2/21/SuperJuniorConfrontation-DR04-NA-C-UE.png/revision/latest/window-crop/width/200/x-offset/0/y-offset/58/window-width/400/window-height/200?cb=20080530031342"", ""imgOriginalDimensions"": { ""width"": ""400"", ""height"": ""580"" }, ""text"": ""Super Junior Confrontation スーパージュニア対（たい）決（けつ）！ English Super Junior Confrontation French..."" }, { ""url"": ""/wiki/Topologic_Trisbaena"", ""title"": ""Topologic Trisbaena"", ""id"": 681182, ""imgUrl"": ""https://vignette.wikia.nocookie.net/yugioh/images/2/2b/TopologicTrisbaena-FLOD-EN-ScR-1E.png/revision/latest/window-crop/width/200/x-offset/0/y-offset/70/window-width/479/window-height/240?cb=20180504165822"", ""imgOriginalDimensions"": { ""width"": ""479"", ""height"": ""700"" }, ""text"": ""Check translation Check translation"" }, { ""url"": ""/wiki/Witchcrafter_Draping"", ""title"": ""Witchcrafter Draping"", ""id"": 702109, ""imgUrl"": ""https://vignette.wikia.nocookie.net/yugioh/images/4/47/WitchcrafterDraping-INCH-EN-1E-OP.png/revision/latest/window-crop/width/200/x-offset/0/y-offset/66/window-width/450/window-height/225?cb=20190315154155"", ""imgOriginalDimensions"": { ""width"": ""450"", ""height"": ""656"" }, ""text"": ""The English lore given is not official. Check translation"" } ] }, ""basepath"": ""https://yugioh.fandom.com"" }");
+
+            // Act
+            await _sut.Articles(50);
+
+            // Assert
+            await _wikiaHttpClient.Received(1).GetString(Arg.Any<string>(), Arg.Any<Dictionary<string, string>>());
         }
     }
 }
