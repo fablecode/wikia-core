@@ -59,7 +59,7 @@ namespace wikia.Helper
             IDictionary<string, string> parameters = new Dictionary<string, string>
             {
                 [Constants.Limit] = requestParameters.Limit.ToString(),
-                ["minArticleQuality"] = requestParameters.MinArticleQuality.ToString(),
+                [Constants.MinArticleQuality] = requestParameters.MinArticleQuality.ToString(),
             };
 
             if (requestParameters.Namespaces.Any())

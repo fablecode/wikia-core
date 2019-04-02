@@ -52,13 +52,13 @@ namespace wikia.Api
 
         #region private helpers
 
-        private IDictionary<string, string> GetSearchListParameters(SearchListRequestParameter requestParameters)
+        private static IDictionary<string, string> GetSearchListParameters(SearchListRequestParameter requestParameters)
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>
             {
                 ["query"] = string.Join(",", requestParameters.Query),
                 [Constants.Limit] = requestParameters.Limit.ToString(),
-                ["minArticleQuality"] = requestParameters.MinArticleQuality.ToString(),
+                [Constants.MinArticleQuality] = requestParameters.MinArticleQuality.ToString(),
                 ["batch"] = requestParameters.Batch.ToString(),
                 [Constants.Namespaces] = string.Join(",", requestParameters.Namespaces)
             };
