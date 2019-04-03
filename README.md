@@ -14,7 +14,6 @@ For example:
 4. [http://elderscrolls.wikia.com/api/v1/](http://elderscrolls.wikia.com/api/v1/)
 
 ## NuGet
-
     PM> Install-Package wikia.core
 
 ## Quickstart
