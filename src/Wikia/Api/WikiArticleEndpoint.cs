@@ -7,7 +7,7 @@ using wikia.Helper;
 
 namespace wikia.Api
 {
-    public abstract class WikiArticleEndpoint
+    public abstract class WikiArticleEndpoint : IWikiArticleEndpoint
     {
         private readonly IWikiaHttpClient _wikiaHttpClient;
         private static readonly Dictionary<ArticleEndpoint, string> Endpoints;

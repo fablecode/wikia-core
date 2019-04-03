@@ -9,7 +9,7 @@ using wikia.Models.RelatedPages;
 
 namespace wikia.Api
 {
-    public class WikiRelatedPages
+    public class WikiRelatedPages : IWikiRelatedPages
     {
         private readonly IWikiaHttpClient _wikiaHttpClient;
         private readonly string _wikiApiUrl;
