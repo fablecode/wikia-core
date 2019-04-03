@@ -9,9 +9,9 @@ Every wiki has its API accessible through URL: {wikidomain}/api/v1/.
 For example:
 
 1. [http://www.wikia.com/api/v1/](http://www.wikia.com/api/v1/)
-2. [http://yugioh.wikia.com/api/v1/](http://yugioh.wikia.com/api/v1/)
-3. [http://naruto.wikia.com/api/v1/](http://naruto.wikia.com/api/v1/)
-4. [http://elderscrolls.wikia.com/api/v1/](http://elderscrolls.wikia.com/api/v1/)
+2. [http://yugioh.fandom.com/api/v1/](http://yugioh.fandom.com/api/v1/)
+3. [http://naruto.fandom.com/api/v1/](http://naruto.fandom.com/api/v1/)
+4. [http://elderscrolls.fandom.com/api/v1/](http://elderscrolls.fandom.com/api/v1/)
 
 ## NuGet
     PM> Install-Package wikia.core
