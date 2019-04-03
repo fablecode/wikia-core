@@ -8,7 +8,7 @@ using wikia.Models.Search;
 
 namespace wikia.Api
 {
-    public class WikiSearch : IWikiSearch
+    public sealed class WikiSearch : IWikiSearch
     {
         private readonly IWikiaHttpClient _wikiaHttpClient;
         private readonly string _wikiApiUrl;
