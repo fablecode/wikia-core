@@ -5,7 +5,7 @@
     <PackageId>wikia.core</PackageId>
     <Authors>fablecode</Authors>
     <Company>fablecode</Company>
-    <PackageIconUrl>https://github.com/fablecode/wikia-core/doc/icons/wikia.jpg</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/fablecode/wikia-core/master/doc/icons/wikia.jpg</PackageIconUrl>
     <PackageProjectUrl>https://github.com/fablecode/wikia-core</PackageProjectUrl>
     <RepositoryUrl>https://github.com/fablecode/wikia-core</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
