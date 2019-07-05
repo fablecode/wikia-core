@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using wikia.Configuration;
 using wikia.Enums;
@@ -21,6 +22,13 @@ namespace wikia.Api
         {
             
         }
+
+        public WikiArticle(string domainUrl, IHttpClientFactory httpClientFactory)
+            : this(domainUrl, WikiaSettings.ApiVersion, new WikiaHttpClient(httpClientFactory))
+        {
+
+        }
+
 
         public WikiArticle(string domainUrl, string apiVersion, IWikiaHttpClient wikiaHttpClient)
         : base(domainUrl, apiVersion, wikiaHttpClient)
