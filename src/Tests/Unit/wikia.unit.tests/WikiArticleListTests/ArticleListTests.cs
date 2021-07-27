@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using wikia.Api;
 using wikia.Configuration;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
 using wikia.Models.Article.Details;
-using wikia.Models.Article.NewArticles;
 using wikia.tests.core;
 
 namespace wikia.unit.tests.WikiArticleListTests

@@ -1,7 +1,7 @@
 ![alt text](https://fablecode.visualstudio.com/wikia-core/_apis/build/status/wikia-core%20CD "Visual studio team services build status") 
 
 # Wikia-Core
-Wikia is a C# .Net Standard 2.0 library that provides resource oriented interfaces and clients for the Wikia Api.
+Wikia is a C# .Net Standard 2.1 library that provides resource oriented interfaces and clients for the Wikia Api.
 
 ## How?
 Every wiki has its API accessible through URL: {wikidomain}/api/v1/.

@@ -26,5 +26,17 @@ namespace wikia.integration.tests
                 );
             }
         }
+
+        public static IEnumerable<TestCaseData> ArticleListTestData
+        {
+            get
+            {
+                yield return new TestCaseData
+                (
+                    "http://yugioh.fandom.com",
+                    "Card_Tips"
+                );
+            }
+        }
     }
 }
