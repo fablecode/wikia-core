@@ -4,6 +4,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using wikia.Api;
 using wikia.Models.SearchSuggestions;
+using wikia.Services;
 using wikia.tests.core;
 
 namespace wikia.integration.tests.WikiSearchSuggestionsTests

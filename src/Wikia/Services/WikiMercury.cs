@@ -1,15 +1,13 @@
 ﻿using System.Threading.Tasks;
+using wikia.Api;
 using wikia.Configuration;
 using wikia.Models.Mercury;
 
-namespace wikia.Api
+namespace wikia.Services
 {
     public sealed class WikiMercury : IWikiMercury
     {
         private readonly IWikiMercuryApi _wikiMercuryApi;
-        private readonly IWikiaHttpClient _wikiaHttpClient;
-        private readonly string _wikiApiUrl;
-        private const string WikiVariablesUrl = "Mercury/WikiVariables";
 
         public WikiMercury(string domainUrl)
             : this(WikiaRestService.For<IWikiMercuryApi>(domainUrl))

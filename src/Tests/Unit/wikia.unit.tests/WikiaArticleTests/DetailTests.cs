@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using wikia.Api;
 using wikia.Models.Article.Details;
+using wikia.Services;
 using wikia.tests.core;
 
 namespace wikia.unit.tests.WikiaArticleTests

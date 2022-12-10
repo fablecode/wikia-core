@@ -1,17 +1,11 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
-using Refit;
-using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using wikia.Api;
 using wikia.Configuration;
-using wikia.Helper;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
 using wikia.Models.Article.PageList;
-using wikia.Services;
 
-namespace wikia.Api
+namespace wikia.Services
 {
     public sealed class WikiArticleList : IWikiArticleList
     {

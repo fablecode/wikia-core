@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using System.Threading.Tasks;
 using wikia.Api;
+using wikia.Services;
 using wikia.tests.core;
 
 namespace wikia.unit.tests.WikiMercuryTests

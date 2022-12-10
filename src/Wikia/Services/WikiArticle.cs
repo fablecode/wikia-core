@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Net.Http;
 using System.Threading.Tasks;
+using wikia.Api;
 using wikia.Configuration;
-using wikia.Enums;
-using wikia.Helper;
 using wikia.Models.Article.Details;
 
-namespace wikia.Api
+namespace wikia.Services
 {
     public sealed class WikiArticle : IWikiArticle
     {

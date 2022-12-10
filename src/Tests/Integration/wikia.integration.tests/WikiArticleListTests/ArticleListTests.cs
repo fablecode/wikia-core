@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System.Threading.Tasks;
 using wikia.Api;
 using wikia.Models.Article;
+using wikia.Services;
 using wikia.tests.core;
 
 namespace wikia.integration.tests.WikiArticleListTests

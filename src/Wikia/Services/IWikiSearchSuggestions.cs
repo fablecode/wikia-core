@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using wikia.Models.SearchSuggestions;
 
-namespace wikia.Api
+namespace wikia.Services
 {
     public interface IWikiSearchSuggestions
     {

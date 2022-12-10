@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
+using wikia.Api;
 using wikia.Configuration;
-using wikia.Helper;
 using wikia.Models.SearchSuggestions;
 
-namespace wikia.Api
+namespace wikia.Services
 {
     public sealed class WikiSearchSuggestions : IWikiSearchSuggestions
     {

@@ -2,6 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 using wikia.Api;
+using wikia.Services;
 using wikia.tests.core;
 
 namespace wikia.integration.tests.WikiaArticleTests
