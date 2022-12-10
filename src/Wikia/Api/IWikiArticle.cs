@@ -1,18 +1,10 @@
 ﻿using System.Threading.Tasks;
 using wikia.Models.Article.Details;
-using wikia.Models.Article.Simple;
 
 namespace wikia.Api
 {
     public interface IWikiArticle
     {
-        /// <summary>
-        /// Get simplified article contents
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        Task<ContentResult> Simple(long id);
-
         /// <summary>
         /// Get details about one or more articles
         /// </summary>

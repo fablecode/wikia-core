@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using wikia.Configuration;
 using wikia.Enums;
 using wikia.Helper;
 using wikia.Models.Article.Details;
-using wikia.Models.Article.Simple;
 
 namespace wikia.Api
 {
@@ -33,16 +31,6 @@ namespace wikia.Api
         public WikiArticle(string domainUrl, string apiVersion, IWikiaHttpClient wikiaHttpClient)
         : base(domainUrl, apiVersion, wikiaHttpClient)
         {
-        }
-
-        public async Task<ContentResult> Simple(long id)
-        {
-            if (id <= 0)
-                throw new ArgumentOutOfRangeException(nameof(id));
-
-            var json = await ArticleRequest(ArticleEndpoint.Simple, () => new Dictionary<string, string> { ["id"] = id.ToString() });
-
-            return JsonHelper.Deserialize<ContentResult>(json);
         }
 
         public Task<ExpandedArticleResultSet> Details(params int[] ids)
