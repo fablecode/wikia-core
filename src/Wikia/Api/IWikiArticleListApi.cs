@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
-using Refit;
+﻿using Refit;
+using System.Threading.Tasks;
 using wikia.Constants;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
-using wikia.Models.Article.NewArticles;
 using wikia.Models.Article.PageList;
 
 namespace wikia.Api;
@@ -25,12 +24,4 @@ public interface IWikiArticleListApi
     /// <returns></returns>
     [Get(ArticleEndpoint.List)]
     Task<ExpandedListArticleResultSet> PageList(ArticleListRequestParameters requestParameters);
-
-    /// <summary>
-    /// Get a list of new articles on this wiki
-    /// </summary>
-    /// <param name="requestParameters"></param>
-    /// <returns></returns>
-    [Get(ArticleEndpoint.NewArticles)]
-    Task<NewArticleResultSet> NewArticles(NewArticleRequestParameters requestParameters);
 }

@@ -3,7 +3,6 @@ using System.Linq;
 using wikia.Models.Activity;
 using wikia.Models.Article;
 using wikia.Models.Article.Details;
-using wikia.Models.Article.NewArticles;
 using wikia.Models.Article.Popular;
 
 namespace wikia.Helper
@@ -50,20 +49,6 @@ namespace wikia.Helper
 
             if (!string.IsNullOrEmpty(requestParameters.Offset))
                 parameters["offset"] = requestParameters.Offset;
-
-            return parameters;
-        }
-
-        public static IDictionary<string, string> GetNewArticleParameters(NewArticleRequestParameters requestParameters)
-        {
-            IDictionary<string, string> parameters = new Dictionary<string, string>
-            {
-                [QuerystringParameter.Limit] = requestParameters.Limit.ToString(),
-                [QuerystringParameter.MinArticleQuality] = requestParameters.MinArticleQuality.ToString(),
-            };
-
-            if (requestParameters.Namespaces.Any())
-                parameters[QuerystringParameter.Namespaces] = string.Join(",", requestParameters.Namespaces);
 
             return parameters;
         }

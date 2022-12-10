@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using wikia.Helper;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
-using wikia.Models.Article.NewArticles;
 using wikia.Models.Article.PageList;
 using wikia.Models.Article.Popular;
 using wikia.Services;
@@ -72,25 +71,6 @@ namespace wikia.Api
             //var json = await ArticleRequest(ArticleEndpoint.List, () => ArticleHelper.GetListParameters(requestParameters, expand));
 
             return JsonHelper.Deserialize<T>(string.Empty);
-        }
-
-        public Task<NewArticleResultSet> NewArticles()
-        {
-            return NewArticles(new NewArticleRequestParameters());
-        }
-
-        public Task<NewArticleResultSet> NewArticles(NewArticleRequestParameters requestParameters)
-        {
-            if (requestParameters == null)
-                throw new ArgumentNullException(nameof(requestParameters));
-
-            if (requestParameters.Limit is <= 0 or > 100)
-                throw new ArgumentOutOfRangeException(nameof(requestParameters.Limit), "Minimum limit is 1 and maximum is 100.");
-
-            if (requestParameters.MinArticleQuality is <= 0 or > 99)
-                throw new ArgumentOutOfRangeException(nameof(requestParameters.MinArticleQuality), "Minimal value of article quality. Ranges from 0 to 99.");
-
-            return _wikiArticleListApi.NewArticles(requestParameters);
         }
 
         public Task<PopularListArticleResultSet> PopularArticleSimple(PopularArticleRequestParameters requestParameters)

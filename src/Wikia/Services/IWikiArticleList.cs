@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
-using wikia.Models.Article.NewArticles;
 using wikia.Models.Article.PageList;
 using wikia.Models.Article.Popular;
 
@@ -41,17 +40,6 @@ namespace wikia.Services
         /// <param name="expand"></param>
         /// <returns></returns>
         Task<T> ArticleList<T>(ArticleListRequestParameters requestParameters, bool expand);
-        /// <summary>
-        /// Get list of new articles on this wiki
-        /// </summary>
-        /// <returns></returns>
-        Task<NewArticleResultSet> NewArticles();
-        /// <summary>
-        /// Get a list of new articles on this wiki
-        /// </summary>
-        /// <param name="requestParameters"></param>
-        /// <returns></returns>
-        Task<NewArticleResultSet> NewArticles(NewArticleRequestParameters requestParameters);
         /// <summary>
         /// Get simple information about popular articles for the current wiki
         /// </summary>
