@@ -1,13 +1,11 @@
-﻿using NSubstitute;
-using NUnit.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using wikia.Api;
-using wikia.Configuration;
 using wikia.Enums;
 using wikia.tests.core;
 
-namespace wikia.unit.tests.WikiArticleEndpointTests
+namespace wikia.integration.tests.WikiArticleEndpointTests
 {
     [TestFixture]
     [Category(TestType.Unit)]

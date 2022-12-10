@@ -1,15 +1,14 @@
-﻿using FluentAssertions;
-using NSubstitute;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FluentAssertions;
+using NSubstitute;
+using NUnit.Framework;
 using wikia.Api;
-using wikia.Configuration;
 using wikia.Models.Search;
 using wikia.tests.core;
 
-namespace wikia.unit.tests.WikiSearchTests
+namespace wikia.integration.tests.WikiSearchTests
 {
     [TestFixture]
     [Category(TestType.Unit)]
