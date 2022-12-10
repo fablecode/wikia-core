@@ -31,13 +31,5 @@ namespace wikia.Services
         /// <param name="requestParameters"></param>
         /// <returns></returns>
         Task<ExpandedListArticleResultSet> PageList(ArticleListRequestParameters requestParameters);
-        /// <summary>
-        /// Get a list of pages on the current wiki
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="requestParameters"></param>
-        /// <param name="expand"></param>
-        /// <returns></returns>
-        Task<T> ArticleList<T>(ArticleListRequestParameters requestParameters, bool expand);
     }
 }

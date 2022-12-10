@@ -38,6 +38,6 @@ public class PagedListTests
         var result = await wikiaArticleList.PageList(parameters);
 
         // Assert
-        result.Offset.Should().StartWithEquivalent(expected);
+        result.Offset.Should().StartWith(expected);
     }
 }

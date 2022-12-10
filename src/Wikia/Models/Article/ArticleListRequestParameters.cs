@@ -16,7 +16,7 @@ namespace wikia.Models.Article
         /// </summary>
         [AliasAs(QuerystringParameter.Namespaces)]
         [Query(CollectionFormat.Csv)]
-        public HashSet<string> Namespaces { get; set; } = new();
+        public HashSet<string> Namespaces { get; set; }
 
         /// <summary>
         /// Limit the number of results

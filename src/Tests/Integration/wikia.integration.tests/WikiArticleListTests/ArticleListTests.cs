@@ -38,7 +38,7 @@ namespace wikia.integration.tests.WikiArticleListTests
             var result = await wikiaArticleList.AlphabeticalList(parameters);
 
             // Assert
-            result.Offset.Should().StartWithEquivalent(expected);
+            result.Offset.Should().StartWith(expected);
         }
     }
 }

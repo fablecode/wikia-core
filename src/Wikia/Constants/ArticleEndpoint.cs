@@ -8,4 +8,6 @@ public static class ArticleEndpoint
     public const string List = $"{ApiVersion}/Articles/List";
     public const string NewArticles = $"{ApiVersion}/Articles/New";
     public const string Popular = $"{ApiVersion}/Articles/Popular";
+    public const string Mercury = $"{ApiVersion}/Mercury/WikiVariables";
+    public const string SearchSuggestions = $"{ApiVersion}/SearchSuggestions/List";
 }

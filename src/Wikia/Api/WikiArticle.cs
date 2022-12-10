@@ -8,29 +8,18 @@ using wikia.Models.Article.Details;
 
 namespace wikia.Api
 {
-    public sealed class WikiArticle : WikiArticleEndpoint, IWikiArticle
+    public sealed class WikiArticle : IWikiArticle
     {
-        public WikiArticle(string domainUrl)
-            : base(domainUrl, WikiaSettings.ApiVersion)
+        private readonly IWikiArticleApi _wikiArticleApi;
+
+        public WikiArticle(string domainUrl) 
+            : this(WikiaRestService.For<IWikiArticleApi>(domainUrl))
         {
-            
-        }
-        public WikiArticle(string domainUrl, string apiVersion)
-            : base(domainUrl, apiVersion, new WikiaHttpClient())
-        {
-            
         }
 
-        public WikiArticle(string domainUrl, IHttpClientFactory httpClientFactory)
-            : this(domainUrl, WikiaSettings.ApiVersion, new WikiaHttpClient(httpClientFactory))
+        public WikiArticle(IWikiArticleApi wikiArticleApi)
         {
-
-        }
-
-
-        public WikiArticle(string domainUrl, string apiVersion, IWikiaHttpClient wikiaHttpClient)
-        : base(domainUrl, apiVersion, wikiaHttpClient)
-        {
+            _wikiArticleApi = wikiArticleApi;
         }
 
         public Task<ExpandedArticleResultSet> Details(params int[] ids)
@@ -38,14 +27,12 @@ namespace wikia.Api
             return Details(new ArticleDetailsRequestParameters(ids));
         }
 
-        public async Task<ExpandedArticleResultSet> Details(ArticleDetailsRequestParameters requestParameters)
+        public Task<ExpandedArticleResultSet> Details(ArticleDetailsRequestParameters requestParameters)
         {
             if (requestParameters == null)
                 throw new ArgumentNullException(nameof(requestParameters));
 
-            var json = await ArticleRequest(ArticleEndpoint.Details, () => ArticleHelper.GetDetailsParameters(requestParameters));
-
-            return JsonHelper.Deserialize<ExpandedArticleResultSet>(json);
+            return _wikiArticleApi.Details(requestParameters);
         }
     }
 }

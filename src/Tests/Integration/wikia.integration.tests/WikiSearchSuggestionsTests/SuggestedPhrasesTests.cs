@@ -13,7 +13,6 @@ namespace wikia.integration.tests.WikiSearchSuggestionsTests
     public class SuggestedPhrasesTests
     {
         private WikiSearchSuggestions _sut;
-        private IWikiaHttpClient _wikiaHttpClient;
         private const string Url = "http://yugioh.fandom.com";
 
         [SetUp]
@@ -23,14 +22,14 @@ namespace wikia.integration.tests.WikiSearchSuggestionsTests
         }
 
         [Test]
-        public void Given_A_Null_Query_Should_ArgumentException()
+        public async Task Given_A_Null_Query_Should_ArgumentException()
         {
             // Arrange
             // Act
             Func<Task<SearchSuggestionsPhrases>> act = () => _sut.SuggestedPhrases(null);
 
             // Assert
-            act.Should().Throw<ArgumentException>();
+            await act.Should().ThrowAsync<ArgumentException>();
         }
 
         [Test]

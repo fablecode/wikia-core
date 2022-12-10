@@ -4,6 +4,7 @@ using Newtonsoft.Json.Serialization;
 using Refit;
 using System;
 using System.Threading.Tasks;
+using wikia.Configuration;
 using wikia.Helper;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
@@ -12,33 +13,18 @@ using wikia.Services;
 
 namespace wikia.Api
 {
-    public sealed class WikiArticleList : WikiArticleEndpoint, IWikiArticleList
+    public sealed class WikiArticleList : IWikiArticleList
     {
         private readonly IWikiArticleListApi _wikiArticleListApi;
 
-        public WikiArticleList(string domainUrl) : base(domainUrl)
+        public WikiArticleList(string domainUrl) 
+            : this(WikiaRestService.For<IWikiArticleListApi>(domainUrl))
         {
-            _wikiArticleListApi = RestService.For<IWikiArticleListApi>(domainUrl,
-                new RefitSettings
-                {
-                    ContentSerializer = new NewtonsoftJsonContentSerializer(
-                        new JsonSerializerSettings()
-                        {
-                            ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                            Converters = { new StringEnumConverter() }
-                        }
-                    )
-                });
-        }
-        public WikiArticleList(string domainUrl, string apiVersion)
-            : base(domainUrl, apiVersion, new WikiaHttpClient())
-        {
-
         }
 
-        public WikiArticleList(string domainUrl, string apiVersion, IWikiaHttpClient wikiaHttpClient)
-            : base(domainUrl, apiVersion, wikiaHttpClient)
+        public WikiArticleList(IWikiArticleListApi wikiArticleListApi)
         {
+            _wikiArticleListApi = wikiArticleListApi;
         }
 
         public Task<UnexpandedListArticleResultSet> AlphabeticalList(string category)
@@ -60,16 +46,6 @@ namespace wikia.Api
         {
             requestParameters.Expand = "1";
             return _wikiArticleListApi.PageList(requestParameters);
-        }
-
-        public async Task<T> ArticleList<T>(ArticleListRequestParameters requestParameters, bool expand)
-        {
-            if (requestParameters == null)
-                throw new ArgumentNullException(nameof(requestParameters));
-
-            //var json = await ArticleRequest(ArticleEndpoint.List, () => ArticleHelper.GetListParameters(requestParameters, expand));
-
-            return JsonHelper.Deserialize<T>(string.Empty);
         }
     }
 }
