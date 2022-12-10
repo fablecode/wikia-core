@@ -1,5 +1,6 @@
 ﻿using Refit;
 using System.Collections.Generic;
+using wikia.Constants;
 
 namespace wikia.Models.Article
 {

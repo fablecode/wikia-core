@@ -1,4 +1,4 @@
-﻿namespace wikia
+﻿namespace wikia.Constants
 {
     public static class QuerystringParameter
     {
