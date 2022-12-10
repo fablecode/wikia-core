@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using wikia.Models.Activity;
 using wikia.Models.Article;
 using wikia.Models.Article.Details;
 
@@ -51,19 +50,5 @@ namespace wikia.Helper
 
             return parameters;
         }
-
-        public static IDictionary<string, string> GetActivityParameters(ActivityRequestParameters requestParameters)
-        {
-            var parameters = new Dictionary<string, string>
-            {
-                [QuerystringParameter.Limit] = requestParameters.Limit.ToString(),
-                [QuerystringParameter.Namespaces] = string.Join(",", requestParameters.Namespaces),
-                ["allowduplicates"] = requestParameters.AllowDuplicates.ToString().ToLower()
-            };
-
-            return parameters;
-        }
-
-
     }
 }
