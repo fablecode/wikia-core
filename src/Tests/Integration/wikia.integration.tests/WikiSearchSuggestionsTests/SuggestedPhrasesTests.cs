@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
-using wikia.Api;
+using System;
+using System.Threading.Tasks;
 using wikia.Models.SearchSuggestions;
 using wikia.Services;
 using wikia.tests.core;

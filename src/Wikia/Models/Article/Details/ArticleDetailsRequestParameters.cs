@@ -17,6 +17,7 @@ namespace wikia.Models.Article.Details
         /// Titles with underscores instead of spaces, comma-separated
         /// </summary>
         [AliasAs("titles")]
+        [Query(CollectionFormat.Csv)]
         public List<string> Titles { get; set; }
 
         /// <summary>
