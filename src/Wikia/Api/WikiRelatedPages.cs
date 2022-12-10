@@ -64,8 +64,8 @@ namespace wikia.Api
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>
             {
-                [Constants.Ids] = string.Join(",", requestParameters.Ids),
-                [Constants.Limit] = requestParameters.Limit.ToString(),
+                [QuerystringParameter.Ids] = string.Join(",", requestParameters.Ids),
+                [QuerystringParameter.Limit] = requestParameters.Limit.ToString(),
             };
 
             return parameters;

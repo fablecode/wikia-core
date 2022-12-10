@@ -15,7 +15,7 @@ namespace wikia.integration.tests.WikiArticleListTests
         public async Task Given_An_ArticleCategory_The_Response_Items_Collection_Should_Not_Be_Empty(string domainUrl, string category)
         {
             // Arrange
-            var wikiaArticleList = new WikiArticleList(domainUrl, WikiaSettings.ApiVersion);
+            var wikiaArticleList = new WikiArticleList(domainUrl);
 
             // Act
             var result = await wikiaArticleList.AlphabeticalList(category);

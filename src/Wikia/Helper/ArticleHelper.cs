@@ -15,7 +15,7 @@ namespace wikia.Helper
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>
             {
-                [Constants.Ids] = string.Join(",", requestParameters.Ids),
+                [QuerystringParameter.Ids] = string.Join(",", requestParameters.Ids),
                 ["abstract"] = requestParameters.Abstract.ToString(),
                 ["width"] = requestParameters.ThumbnailWidth.ToString(),
                 ["height"] = requestParameters.ThumbnailHeight.ToString(),
@@ -36,17 +36,17 @@ namespace wikia.Helper
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>
             {
-                [Constants.Limit] = requestParameters.Limit.ToString(),
+                [QuerystringParameter.Limit] = requestParameters.Limit.ToString(),
             };
 
             if (expanded)
-                parameters[Constants.Expand] = "1";
+                parameters[QuerystringParameter.Expand] = "1";
 
             if (!string.IsNullOrEmpty(requestParameters.Category))
                 parameters["category"] = requestParameters.Category;
 
             if (requestParameters.Namespaces.Any())
-                parameters[Constants.Namespaces] = string.Join(",", requestParameters.Namespaces);
+                parameters[QuerystringParameter.Namespaces] = string.Join(",", requestParameters.Namespaces);
 
             if (!string.IsNullOrEmpty(requestParameters.Offset))
                 parameters["offset"] = requestParameters.Offset;
@@ -58,12 +58,12 @@ namespace wikia.Helper
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>
             {
-                [Constants.Limit] = requestParameters.Limit.ToString(),
-                [Constants.MinArticleQuality] = requestParameters.MinArticleQuality.ToString(),
+                [QuerystringParameter.Limit] = requestParameters.Limit.ToString(),
+                [QuerystringParameter.MinArticleQuality] = requestParameters.MinArticleQuality.ToString(),
             };
 
             if (requestParameters.Namespaces.Any())
-                parameters[Constants.Namespaces] = string.Join(",", requestParameters.Namespaces);
+                parameters[QuerystringParameter.Namespaces] = string.Join(",", requestParameters.Namespaces);
 
             return parameters;
         }
@@ -77,11 +77,11 @@ namespace wikia.Helper
         {
             IDictionary<string, string> parameters = new Dictionary<string, string>
             {
-                [Constants.Limit] = requestParameters.Limit.ToString(),
+                [QuerystringParameter.Limit] = requestParameters.Limit.ToString(),
             };
 
             if (expanded)
-                parameters[Constants.Expand] = "1";
+                parameters[QuerystringParameter.Expand] = "1";
 
             if (requestParameters.BaseArticleId.HasValue)
                 parameters["basearticleid"] = string.Join(",", requestParameters.BaseArticleId);
@@ -93,8 +93,8 @@ namespace wikia.Helper
         {
             var parameters = new Dictionary<string, string>
             {
-                [Constants.Limit] = requestParameters.Limit.ToString(),
-                [Constants.Namespaces] = string.Join(",", requestParameters.Namespaces),
+                [QuerystringParameter.Limit] = requestParameters.Limit.ToString(),
+                [QuerystringParameter.Namespaces] = string.Join(",", requestParameters.Namespaces),
                 ["allowduplicates"] = requestParameters.AllowDuplicates.ToString().ToLower()
             };
 

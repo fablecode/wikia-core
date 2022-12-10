@@ -1,52 +1,67 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using Refit;
+using System;
 using System.Threading.Tasks;
-using wikia.Configuration;
-using wikia.Enums;
 using wikia.Helper;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
 using wikia.Models.Article.NewArticles;
 using wikia.Models.Article.PageList;
 using wikia.Models.Article.Popular;
+using wikia.Services;
 
 namespace wikia.Api
 {
-    public sealed class WikiArticleList : WikiArticleEndpoint, IWikiArticleList
+    public sealed class WikiArticleList : IWikiArticleList
     {
-        public WikiArticleList(string domainUrl)
-            : base(domainUrl, WikiaSettings.ApiVersion)
-        {
+        private readonly IWikiArticleListApi _wikiArticleListApi;
 
+        public WikiArticleList(string domainUrl)
+        {
+            _wikiArticleListApi = RestService.For<IWikiArticleListApi>(domainUrl,
+                new RefitSettings
+                {
+                    ContentSerializer = new NewtonsoftJsonContentSerializer(
+                        new JsonSerializerSettings()
+                        {
+                            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                            Converters = { new StringEnumConverter() }
+                        }
+                    )
+                });
         }
         public WikiArticleList(string domainUrl, string apiVersion)
-            : base(domainUrl, apiVersion, new WikiaHttpClient())
+            //: base(domainUrl, apiVersion, new WikiaHttpClient())
         {
 
         }
 
         public WikiArticleList(string domainUrl, string apiVersion, IWikiaHttpClient wikiaHttpClient)
-            : base(domainUrl, apiVersion, wikiaHttpClient)
+            //: base(domainUrl, apiVersion, wikiaHttpClient)
         {
         }
 
         public Task<UnexpandedListArticleResultSet> AlphabeticalList(string category)
         {
-            return AlphabeticalList(new ArticleListRequestParameters { Category = category });
+            return AlphabeticalList(new ArticleListRequestParameters(category));
         }
 
         public Task<UnexpandedListArticleResultSet> AlphabeticalList(ArticleListRequestParameters requestParameters)
         {
-            return ArticleList<UnexpandedListArticleResultSet>(requestParameters, false);
+            return _wikiArticleListApi.AlphabeticalList(requestParameters);
         }
 
         public Task<ExpandedListArticleResultSet> PageList(string category)
         {
-            return PageList(new ArticleListRequestParameters { Category = category });
+            return PageList(new ArticleListRequestParameters(category));
         }
 
         public Task<ExpandedListArticleResultSet> PageList(ArticleListRequestParameters requestParameters)
         {
-            return ArticleList<ExpandedListArticleResultSet>(requestParameters, true);
+            requestParameters.Expand = "1";
+            return _wikiArticleListApi.PageList(requestParameters);
         }
 
         public async Task<T> ArticleList<T>(ArticleListRequestParameters requestParameters, bool expand)
@@ -54,9 +69,9 @@ namespace wikia.Api
             if (requestParameters == null)
                 throw new ArgumentNullException(nameof(requestParameters));
 
-            var json = await ArticleRequest(ArticleEndpoint.List, () => ArticleHelper.GetListParameters(requestParameters, expand));
+            //var json = await ArticleRequest(ArticleEndpoint.List, () => ArticleHelper.GetListParameters(requestParameters, expand));
 
-            return JsonHelper.Deserialize<T>(json);
+            return JsonHelper.Deserialize<T>(string.Empty);
         }
 
         public Task<NewArticleResultSet> NewArticles()
@@ -64,20 +79,18 @@ namespace wikia.Api
             return NewArticles(new NewArticleRequestParameters());
         }
 
-        public async Task<NewArticleResultSet> NewArticles(NewArticleRequestParameters requestParameters)
+        public Task<NewArticleResultSet> NewArticles(NewArticleRequestParameters requestParameters)
         {
             if (requestParameters == null)
                 throw new ArgumentNullException(nameof(requestParameters));
 
-            if (requestParameters.Limit <= 0 || requestParameters.Limit > 100)
+            if (requestParameters.Limit is <= 0 or > 100)
                 throw new ArgumentOutOfRangeException(nameof(requestParameters.Limit), "Minimum limit is 1 and maximum is 100.");
 
-            if (requestParameters.MinArticleQuality <= 0 || requestParameters.MinArticleQuality > 99)
+            if (requestParameters.MinArticleQuality is <= 0 or > 99)
                 throw new ArgumentOutOfRangeException(nameof(requestParameters.MinArticleQuality), "Minimal value of article quality. Ranges from 0 to 99.");
 
-            var json = await ArticleRequest(ArticleEndpoint.NewArticles, () => ArticleHelper.GetNewArticleParameters(requestParameters));
-
-            return JsonHelper.Deserialize<NewArticleResultSet>(json);
+            return _wikiArticleListApi.NewArticles(requestParameters);
         }
 
         public Task<PopularListArticleResultSet> PopularArticleSimple(PopularArticleRequestParameters requestParameters)
@@ -98,9 +111,9 @@ namespace wikia.Api
             if (requestParameters.Limit <= 0 || requestParameters.Limit > 10)
                 throw new ArgumentOutOfRangeException(nameof(requestParameters.Limit), "Minimum limit is 1 and maximum is 10");
 
-            var json = await ArticleRequest(ArticleEndpoint.Popular, () => ArticleHelper.GetPopularArticleParameters(requestParameters, true));
+            //var json = await ArticleRequest(ArticleEndpoint.Popular, () => ArticleHelper.GetPopularArticleParameters(requestParameters, true));
 
-            return JsonHelper.Deserialize<T>(json);
+            return JsonHelper.Deserialize<T>("json");
         }
 
     }

@@ -5,6 +5,7 @@ using NSubstitute;
 using NUnit.Framework;
 using wikia.Api;
 using wikia.Configuration;
+using wikia.Services;
 using wikia.tests.core;
 
 namespace wikia.unit.tests.WikiArticleListTests

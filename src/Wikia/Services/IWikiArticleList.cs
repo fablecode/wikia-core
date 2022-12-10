@@ -5,7 +5,7 @@ using wikia.Models.Article.NewArticles;
 using wikia.Models.Article.PageList;
 using wikia.Models.Article.Popular;
 
-namespace wikia.Api
+namespace wikia.Services
 {
     public interface IWikiArticleList
     {

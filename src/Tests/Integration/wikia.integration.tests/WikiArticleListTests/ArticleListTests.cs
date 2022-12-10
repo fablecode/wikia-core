@@ -1,10 +1,8 @@
-﻿using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
+using System.Threading.Tasks;
 using wikia.Api;
-using wikia.Configuration;
 using wikia.Models.Article;
-using wikia.Models.Article.AlphabeticalList;
 using wikia.tests.core;
 
 namespace wikia.integration.tests.WikiArticleListTests
@@ -14,35 +12,33 @@ namespace wikia.integration.tests.WikiArticleListTests
     public class ArticleListTests
     {
         [TestCaseSource(typeof(WikiaTestData), nameof(WikiaTestData.ArticleListTestData))]
-        public async Task Given_An_ArticleListRequestParameters_The_Response_Items_Collection_Should_Not_Be_Empty(string domainUrl, string category)
+        public async Task Given_A_DomainUrl_And_Category_The_Response_Items_Collection_Should_Not_Be_Empty(string domainUrl, string category)
         {
             // Arrange
-            var wikiaArticleList = new WikiArticleList(domainUrl, WikiaSettings.ApiVersion);
+            var wikiaArticleList = new WikiArticleList(domainUrl);
 
             // Act
-            var result = await wikiaArticleList.ArticleList<UnexpandedListArticleResultSet>(new ArticleListRequestParameters { Category = category }, false);
+            var result = await wikiaArticleList.AlphabeticalList(category);
 
             // Assert
             result.Items.Should().NotBeEmpty();
         }
-    }
 
-    [TestFixture]
-    [Category(TestType.Integration)]
-    public class NewArticlesTests
-    {
         [Test]
-        public async Task Given_An_NewArticleResultSet_Should_Return_New_Articles()
+        public async Task Given_An_AlphabeticalList_Request_Offset_Should_Begin_Page_Prefix()
         {
             // Arrange
-            const string domainUrl = "http://yugioh.fandom.com";
-            var wikiaArticleList = new WikiArticleList(domainUrl, WikiaSettings.ApiVersion);
+            const string expected = "page|";
+            const string category = "Card_Tips";
+            const string domainUrl = "https://yugioh.fandom.com";
+            var parameters = new ArticleListRequestParameters(category);
+            var wikiaArticleList = new WikiArticleList(domainUrl);
 
             // Act
-            var result = await wikiaArticleList.NewArticles();
+            var result = await wikiaArticleList.AlphabeticalList(parameters);
 
             // Assert
-            result.Items.Should().NotBeEmpty();
+            result.Offset.Should().StartWithEquivalent(expected);
         }
     }
 }

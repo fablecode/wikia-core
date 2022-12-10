@@ -1,4 +1,6 @@
-﻿namespace wikia.Models.Article.AlphabeticalList
+﻿using Newtonsoft.Json;
+
+namespace wikia.Models.Article.AlphabeticalList
 {
     public class UnexpandedListArticleResultSet
     {
