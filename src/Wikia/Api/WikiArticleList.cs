@@ -8,16 +8,15 @@ using wikia.Helper;
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
 using wikia.Models.Article.PageList;
-using wikia.Models.Article.Popular;
 using wikia.Services;
 
 namespace wikia.Api
 {
-    public sealed class WikiArticleList : IWikiArticleList
+    public sealed class WikiArticleList : WikiArticleEndpoint, IWikiArticleList
     {
         private readonly IWikiArticleListApi _wikiArticleListApi;
 
-        public WikiArticleList(string domainUrl)
+        public WikiArticleList(string domainUrl) : base(domainUrl)
         {
             _wikiArticleListApi = RestService.For<IWikiArticleListApi>(domainUrl,
                 new RefitSettings
@@ -32,13 +31,13 @@ namespace wikia.Api
                 });
         }
         public WikiArticleList(string domainUrl, string apiVersion)
-            //: base(domainUrl, apiVersion, new WikiaHttpClient())
+            : base(domainUrl, apiVersion, new WikiaHttpClient())
         {
 
         }
 
         public WikiArticleList(string domainUrl, string apiVersion, IWikiaHttpClient wikiaHttpClient)
-            //: base(domainUrl, apiVersion, wikiaHttpClient)
+            : base(domainUrl, apiVersion, wikiaHttpClient)
         {
         }
 
@@ -72,29 +71,5 @@ namespace wikia.Api
 
             return JsonHelper.Deserialize<T>(string.Empty);
         }
-
-        public Task<PopularListArticleResultSet> PopularArticleSimple(PopularArticleRequestParameters requestParameters)
-        {
-            return PopularArticle<PopularListArticleResultSet>(requestParameters, false);
-        }
-
-        public Task<PopularExpandedArticleResultSet> PopularArticleDetail(PopularArticleRequestParameters requestParameters)
-        {
-            return PopularArticle<PopularExpandedArticleResultSet>(requestParameters, true);
-        }
-
-        public async Task<T> PopularArticle<T>(PopularArticleRequestParameters requestParameters, bool expand)
-        {
-            if (requestParameters == null)
-                throw new ArgumentNullException(nameof(requestParameters));
-
-            if (requestParameters.Limit <= 0 || requestParameters.Limit > 10)
-                throw new ArgumentOutOfRangeException(nameof(requestParameters.Limit), "Minimum limit is 1 and maximum is 10");
-
-            //var json = await ArticleRequest(ArticleEndpoint.Popular, () => ArticleHelper.GetPopularArticleParameters(requestParameters, true));
-
-            return JsonHelper.Deserialize<T>("json");
-        }
-
     }
 }

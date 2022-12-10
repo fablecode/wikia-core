@@ -2,7 +2,6 @@
 using wikia.Models.Article;
 using wikia.Models.Article.AlphabeticalList;
 using wikia.Models.Article.PageList;
-using wikia.Models.Article.Popular;
 
 namespace wikia.Services
 {
@@ -40,25 +39,5 @@ namespace wikia.Services
         /// <param name="expand"></param>
         /// <returns></returns>
         Task<T> ArticleList<T>(ArticleListRequestParameters requestParameters, bool expand);
-        /// <summary>
-        /// Get simple information about popular articles for the current wiki
-        /// </summary>
-        /// <param name="requestParameters"></param>
-        /// <returns></returns>
-        Task<PopularListArticleResultSet> PopularArticleSimple(PopularArticleRequestParameters requestParameters);
-        /// <summary>
-        /// Get detailed information about popular articles for the current wiki
-        /// </summary>
-        /// <param name="requestParameters"></param>
-        /// <returns></returns>
-        Task<PopularExpandedArticleResultSet> PopularArticleDetail(PopularArticleRequestParameters requestParameters);
-        /// <summary>
-        /// Get popular articles for the current wiki
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="requestParameters"></param>
-        /// <param name="expand"></param>
-        /// <returns></returns>
-        Task<T> PopularArticle<T>(PopularArticleRequestParameters requestParameters, bool expand);
     }
 }

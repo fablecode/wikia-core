@@ -3,7 +3,6 @@ using System.Linq;
 using wikia.Models.Activity;
 using wikia.Models.Article;
 using wikia.Models.Article.Details;
-using wikia.Models.Article.Popular;
 
 namespace wikia.Helper
 {
@@ -49,27 +48,6 @@ namespace wikia.Helper
 
             if (!string.IsNullOrEmpty(requestParameters.Offset))
                 parameters["offset"] = requestParameters.Offset;
-
-            return parameters;
-        }
-
-        public static IDictionary<string, string> GetPopularArticleParameters(PopularArticleRequestParameters requestParameters)
-        {
-            return GetPopularArticleParameters(requestParameters, false);
-        }
-
-        public static IDictionary<string, string> GetPopularArticleParameters(PopularArticleRequestParameters requestParameters, bool expanded)
-        {
-            IDictionary<string, string> parameters = new Dictionary<string, string>
-            {
-                [QuerystringParameter.Limit] = requestParameters.Limit.ToString(),
-            };
-
-            if (expanded)
-                parameters[QuerystringParameter.Expand] = "1";
-
-            if (requestParameters.BaseArticleId.HasValue)
-                parameters["basearticleid"] = string.Join(",", requestParameters.BaseArticleId);
 
             return parameters;
         }
