@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
-using wikia.Api;
+using System.Threading.Tasks;
+using wikia.Services;
 using wikia.tests.core;
 
 namespace wikia.integration.tests.WikiaArticleTests

@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
-using wikia.Api;
-using wikia.Configuration;
+using System.Threading.Tasks;
+using wikia.Services;
 using wikia.tests.core;
 
 namespace wikia.integration.tests.WikiArticleListTests
@@ -15,7 +14,7 @@ namespace wikia.integration.tests.WikiArticleListTests
         public async Task Given_An_ArticleCategory_The_Response_Items_Collection_Should_Not_Be_Empty(string domainUrl, string category)
         {
             // Arrange
-            var wikiaArticleList = new WikiArticleList(domainUrl, WikiaSettings.ApiVersion);
+            var wikiaArticleList = new WikiArticleList(domainUrl);
 
             // Act
             var result = await wikiaArticleList.AlphabeticalList(category);
