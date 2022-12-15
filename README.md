@@ -38,9 +38,6 @@ IWikiArticle article = new WikiArticle(domainUrl);
 
 var articleId = 50
 
-// Simple info
-var articleSimpleResult = article.Simple(articleId);
-
 // Detail info
 var articleDetailsResult = article.Details(articleId);
 
